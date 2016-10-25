@@ -12,6 +12,10 @@ public abstract class Enclos {
 	protected ArrayList<Animal> animaux_present = new ArrayList<Animal>();
 	protected int degree_proprete; // 0 mauvais / 1 correct / 2 bon
 
+	public ArrayList<Animal> selectionner_animaux_present() {
+		return animaux_present;
+	}
+
 	public void afficher_caracteristiques_animaux_contenu() {
 		for (int i = 0; i < animaux_present.size(); i++) {
 			System.out.println(animaux_present.get(i).toString());
@@ -41,5 +45,10 @@ public abstract class Enclos {
 	}
 
 	public abstract void entretenir();
+
+	public void salir() {
+		if (degree_proprete > 0)
+			degree_proprete = degree_proprete - 1;
+	}
 
 }

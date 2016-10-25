@@ -7,8 +7,8 @@ public abstract class Animal {
 	private int taille;
 	private int age;
 	private boolean indicateur_de_faim;
-	private boolean indicateur_de_sommeil;
-	private int indicateur_de_sante;
+	private boolean indicateur_de_sommeil; // 1=dort 0=reveiller
+	private int indicateur_de_sante; // 2=ok 1=malade 0=mort
 
 	public void manger() {
 		if (this.indicateur_de_sommeil == false) {
@@ -23,6 +23,14 @@ public abstract class Animal {
 
 	public void setIndicateur_de_faim(boolean indicateur_de_faim) {
 		this.indicateur_de_faim = indicateur_de_faim;
+	}
+
+	public void setIndicateur_de_sommeil(boolean indicateur_de_sommeil) {
+		this.indicateur_de_sommeil = indicateur_de_sommeil;
+	}
+
+	public void setIndicateur_de_sante(int indicateur_de_sante) {
+		this.indicateur_de_sante = indicateur_de_sante;
 	}
 
 	public void emettre_un_son() {
@@ -50,6 +58,10 @@ public abstract class Animal {
 
 	public boolean estUneFemelle() {
 		return femelle;
+	}
+
+	public int getIndicateur_de_sante() {
+		return indicateur_de_sante;
 	}
 
 	public Animal() {
