@@ -1,3 +1,4 @@
+package autre;
 
 import animaux_abstrait.Animal;
 import enclos.Enclos;
