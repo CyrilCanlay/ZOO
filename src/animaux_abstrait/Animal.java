@@ -1,5 +1,8 @@
 package animaux_abstrait;
 
+import autre.Zoo;
+import enclos.Enclos;
+
 public abstract class Animal {
 	private String nom_espece;
 	private boolean femelle; // M = 0 F = 1
@@ -9,6 +12,13 @@ public abstract class Animal {
 	private boolean indicateur_de_faim;
 	private boolean indicateur_de_sommeil; // 1=dort 0=reveiller
 	private int indicateur_de_sante; // 2=ok 1=malade 0=mort
+
+	private Zoo zoo_de_l_animal;
+	private Enclos enclos_de_l_animal;
+
+	private void actualiser_zoo_enclos_animal() {
+
+	}
 
 	public void manger() {
 		if (this.indicateur_de_sommeil == false) {
@@ -51,11 +61,10 @@ public abstract class Animal {
 
 	}
 
-	@Override
 	public String toString() {
 		return "Animal [nom_espece=" + nom_espece + ", femelle=" + femelle + ", poids=" + poids + ", taille=" + taille
 				+ ", age=" + age + ", indicateur_de_faim=" + indicateur_de_faim + ", indicateur_de_sommeil="
-				+ indicateur_de_sommeil + ", indicateur_de_santé=" + indicateur_de_sante + "]";
+				+ indicateur_de_sommeil + ", indicateur_de_sante=" + indicateur_de_sante + "]";
 	}
 
 	public boolean est_une_femelle() {
@@ -68,6 +77,14 @@ public abstract class Animal {
 
 	public boolean recuperer_sommeil() {
 		return indicateur_de_sommeil;
+	}
+
+	public int recuperer_poids() {
+		return this.poids;
+	}
+
+	public int recuperer_taille() {
+		return this.taille;
 	}
 
 	public int recuperer_age() {

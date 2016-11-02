@@ -26,5 +26,8 @@ public class Main {
 		zoo.setMaximal_enclos(100);
 		zoo.ajouter_enclos(ocean);
 		zoo.afficher_nombre_animaux();
+
+		System.out.println(ocean.getClass());
+
 	}
 }

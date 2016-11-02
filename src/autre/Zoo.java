@@ -4,12 +4,38 @@ import java.util.ArrayList;
 
 import animaux_abstrait.Animal;
 import enclos.Enclos;
+import enclos.EnclosStandard;
 
 public class Zoo {
 	String nom;
 	Employe employe;
 	int maximal_enclos;
 	ArrayList<Enclos> enclos_existants = new ArrayList<>();
+
+	public ArrayList recherche_animal_dans_zoo(Animal animal_recherche) {
+		ArrayList informations = new ArrayList();
+		// 0 = Zoo
+		// 1 = Enclos
+		// 2 = Meute
+
+		for (int i = 0; i < enclos_existants.size(); i++) {
+			for (int j = 0; j < enclos_existants.get(i).recuperer_nombre_animaux_present(); j++) {
+				if (enclos_existants.get(i).selectionner_animaux_present().get(j).equals(animal_recherche)) {
+
+					informations.add(this);
+					informations.add(enclos_existants.get(i));
+
+					if (enclos_existants.get(i).getClass().equals("class enclos.EnclosStandard")) {
+						EnclosStandard standard = (EnclosStandard) enclos_existants.get(i);
+						informations.add(standard.recuperer_meute_de_l_enclos());
+					}
+
+				}
+			}
+		}
+		return informations;
+
+	}
 
 	public void afficher_nombre_animaux() {
 		int result = 0;
