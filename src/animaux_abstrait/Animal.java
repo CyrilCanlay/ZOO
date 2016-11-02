@@ -58,7 +58,7 @@ public abstract class Animal {
 				+ indicateur_de_sommeil + ", indicateur_de_santé=" + indicateur_de_sante + "]";
 	}
 
-	public boolean estUneFemelle() {
+	public boolean est_une_femelle() {
 		return femelle;
 	}
 
