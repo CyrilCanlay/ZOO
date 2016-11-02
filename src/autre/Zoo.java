@@ -1,4 +1,5 @@
 package autre;
+
 import java.util.ArrayList;
 
 import animaux_abstrait.Animal;
@@ -34,20 +35,20 @@ public class Zoo {
 				int chance_dormir = Calcul.nombre_aleatoire_borne(1, 2);
 				Animal animal_en_question = enclos_existants.get(i).selectionner_animaux_present().get(j);
 				if (chance_dormir == 2) {
-					animal_en_question.setIndicateur_de_sommeil(true);
+					animal_en_question.changer_sommeil(true);
 				} else {
-					animal_en_question.setIndicateur_de_sommeil(false);
+					animal_en_question.changer_sommeil(false);
 				}
 				int chance_malade = Calcul.nombre_aleatoire_borne(1, 10);
 				if (chance_malade == 1) {
-					animal_en_question.setIndicateur_de_sante(1);
+					animal_en_question.changer_sante(1);
 				}
 				if (chance_malade == 2) {
-					if (animal_en_question.getIndicateur_de_sante() == 1) {
-						animal_en_question.setIndicateur_de_sante(0);
+					if (animal_en_question.recuperer_sante() == 1) {
+						animal_en_question.changer_sante(0);
 					}
 				} else {
-					if (animal_en_question.getIndicateur_de_sante() == 1) {
+					if (animal_en_question.recuperer_sante() == 1) {
 						animal_en_question.etre_soigne();
 					}
 				}

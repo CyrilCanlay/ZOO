@@ -18,8 +18,32 @@ public class Loup extends Mammifere implements Terrestre {
 
 	}
 
-	public void afficher_ses_caractéristiques() {
-		toString();
+	@Override
+	public String toString() {
+		return "Loup [force=" + force + ", domination=" + domination + ", rang=" + rang + ", niveau=" + niveau
+				+ ", impetuosite=" + impetuosite + ", meute=" + meute + "]";
 	}
 
+	@Override
+	public void emettre_un_son() {
+		System.out.println("hurle");
+	}
+
+	public boolean entendre_hurlement() {
+		if (recuperer_sante() == 2 && recuperer_sommeil() == false) {
+			return true;
+		}
+		return false;
+	}
+
+	public void se_separer_de_sa_meute() {
+
+	}
+
+	public void vieillir() {
+		if (recuperer_age() > 18) {
+			changer_sante(0);
+		}
+		changer_age(recuperer_age() + 1);
+	}
 }

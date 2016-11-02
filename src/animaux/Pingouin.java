@@ -12,4 +12,9 @@ public class Pingouin extends Autre implements Marin, Terrestre, Volant {
 
 	}
 
+	@Override
+	public void emettre_un_son() {
+		System.out.println("jabote");
+	}
+
 }

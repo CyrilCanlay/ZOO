@@ -34,8 +34,8 @@ public abstract class Enclos {
 
 	public void nourrir_animaux() {
 		for (int i = 0; i < animaux_present.size(); i++) {
-			if (animaux_present.get(i).isIndicateur_de_faim()) {
-				animaux_present.get(i).setIndicateur_de_faim(true);
+			if (animaux_present.get(i).recuperer_faim()) {
+				animaux_present.get(i).changer_faim(true);
 			}
 		}
 	}

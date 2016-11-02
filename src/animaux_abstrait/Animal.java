@@ -17,25 +17,27 @@ public abstract class Animal {
 		}
 	}
 
-	public boolean isIndicateur_de_faim() {
+	public boolean recuperer_faim() {
 		return indicateur_de_faim;
 	}
 
-	public void setIndicateur_de_faim(boolean indicateur_de_faim) {
+	public void changer_faim(boolean indicateur_de_faim) {
 		this.indicateur_de_faim = indicateur_de_faim;
 	}
 
-	public void setIndicateur_de_sommeil(boolean indicateur_de_sommeil) {
+	public void changer_sommeil(boolean indicateur_de_sommeil) {
 		this.indicateur_de_sommeil = indicateur_de_sommeil;
 	}
 
-	public void setIndicateur_de_sante(int indicateur_de_sante) {
+	public void changer_sante(int indicateur_de_sante) {
 		this.indicateur_de_sante = indicateur_de_sante;
 	}
 
-	public void emettre_un_son() {
-
+	public void changer_age(int age) {
+		this.age = age;
 	}
+
+	public abstract void emettre_un_son();
 
 	public void etre_soigne() {
 
@@ -60,8 +62,16 @@ public abstract class Animal {
 		return femelle;
 	}
 
-	public int getIndicateur_de_sante() {
+	public int recuperer_sante() {
 		return indicateur_de_sante;
+	}
+
+	public boolean recuperer_sommeil() {
+		return indicateur_de_sommeil;
+	}
+
+	public int recuperer_age() {
+		return age;
 	}
 
 	public Animal() {

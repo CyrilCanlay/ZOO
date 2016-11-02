@@ -1,4 +1,5 @@
 package animaux;
+
 import animaux_abstrait.Mammifere;
 import animaux_interfaces.Terrestre;
 
@@ -8,6 +9,11 @@ public class Ours extends Mammifere implements Terrestre {
 	public void mettre_bas() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void emettre_un_son() {
+		System.out.println("gronde, grogne, hurle ou grommelle");
 	}
 
 }

@@ -1,4 +1,5 @@
 package autre;
+
 import animaux.Aigle;
 import animaux.Baleine;
 import animaux.Pingouin;
