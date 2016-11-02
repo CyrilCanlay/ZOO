@@ -8,7 +8,7 @@ public class Loup extends Mammifere implements Terrestre {
 
 	int force;
 	int domination;
-	int rang; // 1 a 26 (1 est le plus élévé)
+	int rang; // 1 a 26 (1 est le plus élévé) (chiffre = lettre grec)
 	int niveau;
 	int impetuosite;
 	Meute meute;
