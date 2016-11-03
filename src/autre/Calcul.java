@@ -2,15 +2,16 @@ package autre;
 
 public class Calcul {
 
-	final static char alphabet_grec[] = { 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο',
-			'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω' };
+	final static String alphabet_grec[] = { "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta",
+			"theta", "iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma", "tau",
+			"upsilon", "phi", "khi", "psi", "omega" };
 
 	public static int nombre_aleatoire_borne(int minimum, int maximum) {
 		int randomNum = minimum + (int) (Math.random() * maximum);
 		return randomNum;
 	}
 
-	public static char recuperer_alphabet_grec(int index) {
+	public static String recuperer_alphabet_grec(int index) {
 		return alphabet_grec[index];
 	}
 }
