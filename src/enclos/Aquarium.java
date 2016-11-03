@@ -4,6 +4,10 @@ import animaux_abstrait.Animal;
 
 public class Aquarium extends Enclos {
 
+	public Aquarium(String nom, int superficie, int nombre_maximum_animaux) {
+		super(nom, superficie, nombre_maximum_animaux);
+	}
+
 	int profondeur_bassin;
 	boolean salinite_eau; // 1 = bien salé et 0 = mal salé
 

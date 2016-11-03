@@ -1,6 +1,7 @@
 package autre;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import animaux_abstrait.Animal;
 import enclos.Enclos;
@@ -16,6 +17,22 @@ public class Zoo {
 		return enclos_existants;
 	}
 
+	@Override
+	public String toString() {
+		return "Zoo [nom=" + nom + ", employe=" + employe + ", maximal_enclos=" + maximal_enclos + ", enclos_existants="
+				+ enclos_existants + "]";
+	}
+
+	public void afficher_zoo_complet() {
+		this.toString();
+		for (Enclos enclos : enclos_existants) {
+			enclos.toString();
+			for (Animal animaux : enclos.recuperer_animaux_present()) {
+				animaux.toString();
+			}
+		}
+	}
+
 	public ArrayList recuperer_appartenaces_animal(Animal animal_recherche) {
 		ArrayList informations = new ArrayList();
 		// 0 = Zoo
@@ -24,7 +41,7 @@ public class Zoo {
 
 		for (int i = 0; i < enclos_existants.size(); i++) {
 			for (int j = 0; j < enclos_existants.get(i).recuperer_nombre_animaux_present(); j++) {
-				if (enclos_existants.get(i).selectionner_animaux_present().get(j).equals(animal_recherche)) {
+				if (enclos_existants.get(i).recuperer_animaux_present().get(j).equals(animal_recherche)) {
 
 					informations.add(this);
 					informations.add(enclos_existants.get(i));
@@ -62,7 +79,7 @@ public class Zoo {
 		for (int i = 0; i < enclos_existants.size(); i++) {
 			for (int j = 0; j < enclos_existants.get(i).recuperer_nombre_animaux_present(); j++) {
 				int chance_dormir = Calcul.nombre_aleatoire_borne(1, 2);
-				Animal animal_en_question = enclos_existants.get(i).selectionner_animaux_present().get(j);
+				Animal animal_en_question = enclos_existants.get(i).recuperer_animaux_present().get(j);
 				if (chance_dormir == 2) {
 					animal_en_question.changer_sommeil(true);
 				} else {
@@ -93,6 +110,29 @@ public class Zoo {
 			if (chance_salir == 1) {
 				enclos_en_question.salir();
 			}
+		}
+	}
+
+	public void controller_enploye() {
+
+		Scanner lire_clavier = new Scanner(System.in);
+
+		System.out.println("0 = quitter" + "\n" + "1 = afficher zoo");
+		int choix = lire_clavier.nextInt();
+
+		switch (choix) {
+
+		case 0:
+			Thread.currentThread().interrupt();
+			return;
+
+		case 1:
+			afficher_zoo_complet();
+			break;
+
+		default:
+			System.out.println("Mauvais choix réessayer.");
+
 		}
 	}
 }

@@ -5,6 +5,10 @@ import hierarchie.Meute;
 
 public class EnclosStandard extends Enclos {
 
+	public EnclosStandard(String nom, int superficie, int nombre_maximum_animaux) {
+		super(nom, superficie, nombre_maximum_animaux);
+	}
+
 	Meute meute_de_l_enclos;
 
 	public Meute recuperer_meute_de_l_enclos() {

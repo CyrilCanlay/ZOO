@@ -37,7 +37,7 @@ public abstract class Animal {
 	}
 
 	private void actualiser_zoo_enclos_animal(Zoo zoo_du_loup) {
-		ArrayList inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
+		ArrayList<?> inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
 		zoo_de_l_animal = (Zoo) inforamtions_loup.get(0);
 		enclos_de_l_animal = (Enclos) inforamtions_loup.get(1);
 	}

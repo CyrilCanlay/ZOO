@@ -1,7 +1,5 @@
 package autre;
 
-import java.util.Collection;
-
 import animaux.Aigle;
 import animaux.Baleine;
 import animaux.Pingouin;
@@ -23,9 +21,9 @@ public class Main {
 		PoissonRouge cyril = new PoissonRouge("cyril", false, 3, 200, 4, null, null);
 		Pingouin xXx_pingu_xXx = new Pingouin("xXx_pingu_xXx", true, 50, 5000, 6, null, null);
 
-		Aquarium ocean = new Aquarium();
-		Voliere ciel = new Voliere();
-		EnclosStandard terre = new EnclosStandard();
+		Aquarium ocean = new Aquarium("ocean", 500, 100);
+		Voliere ciel = new Voliere("ciel", 500, 100);
+		EnclosStandard terre = new EnclosStandard("terre", 500, 100);
 
 		ocean.ajouter_animaux(bob);
 		ocean.ajouter_animaux(cyril);

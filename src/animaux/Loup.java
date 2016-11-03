@@ -26,7 +26,7 @@ public class Loup extends Mammifere implements Terrestre {
 	Meute meute_du_loup;
 
 	private void actualiser_meute_animal(Zoo zoo_du_loup) {
-		ArrayList inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
+		ArrayList<?> inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
 		meute_du_loup = (Meute) inforamtions_loup.get(2);
 	}
 
@@ -76,10 +76,10 @@ public class Loup extends Mammifere implements Terrestre {
 		// on fais hurler le cri de meute des autres loups
 		for (int i = 0; i < enclos_meute_adverses.size(); i++) {
 			for (int j = 0; j < enclos_meute_adverses.get(i).recuperer_nombre_animaux_present(); j++) {
-				if (enclos_meute_adverses.get(i).selectionner_animaux_present().get(j).getClass()
+				if (enclos_meute_adverses.get(i).recuperer_animaux_present().get(j).getClass()
 						.equals("class animaux.Loup")) {
-					Loup loup_adverse_qui_va_repondre = (Loup) enclos_meute_adverses.get(i)
-							.selectionner_animaux_present().get(j);
+					Loup loup_adverse_qui_va_repondre = (Loup) enclos_meute_adverses.get(i).recuperer_animaux_present()
+							.get(j);
 					loup_adverse_qui_va_repondre.hurlement_meute();
 				}
 			}
