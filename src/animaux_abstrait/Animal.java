@@ -21,6 +21,21 @@ public abstract class Animal {
 	private Zoo zoo_de_l_animal;
 	private Enclos enclos_de_l_animal;
 
+	public Animal(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
+			Enclos enclos_de_l_animal) {
+		this.nom = nom;
+		this.nom_espece = this.getClass().toString();
+		this.femelle = femelle;
+		this.poids = poids;
+		this.taille = taille;
+		this.age = age;
+		this.indicateur_de_faim = false;
+		this.indicateur_de_sommeil = false;
+		this.indicateur_de_sante = 2;
+		this.zoo_de_l_animal = zoo_de_l_animal;
+		this.enclos_de_l_animal = enclos_de_l_animal;
+	}
+
 	private void actualiser_zoo_enclos_animal(Zoo zoo_du_loup) {
 		ArrayList inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
 		zoo_de_l_animal = (Zoo) inforamtions_loup.get(0);
@@ -29,7 +44,8 @@ public abstract class Animal {
 
 	public void manger() {
 		if (this.indicateur_de_sommeil == false) {
-			System.out.println("je mange");
+			System.out.println(this.nom + " est en train de manger");
+			changer_faim(false);
 			System.out.println("j'ai fini de manger");
 		}
 	}
@@ -47,15 +63,19 @@ public abstract class Animal {
 	}
 
 	public void changer_faim(boolean indicateur_de_faim) {
-		this.indicateur_de_faim = indicateur_de_faim;
+		if (est_pas_mort())
+			this.indicateur_de_faim = indicateur_de_faim;
 	}
 
 	public void changer_sommeil(boolean indicateur_de_sommeil) {
-		this.indicateur_de_sommeil = indicateur_de_sommeil;
+		if (recuperer_sante() != 0)
+			this.indicateur_de_sommeil = indicateur_de_sommeil;
 	}
 
 	public void changer_sante(int indicateur_de_sante) {
-		this.indicateur_de_sante = indicateur_de_sante;
+		if (recuperer_sante() == 0) {
+			this.indicateur_de_sante = indicateur_de_sante;
+		}
 	}
 
 	public void changer_nom(String futur_nom) {
@@ -83,13 +103,10 @@ public abstract class Animal {
 	}
 
 	public String toString() {
-		return "Animal [nom_espece=" + nom_espece + ", femelle=" + femelle + ", poids=" + poids + ", taille=" + taille
-				+ ", age=" + age + ", indicateur_de_faim=" + indicateur_de_faim + ", indicateur_de_sommeil="
-				+ indicateur_de_sommeil + ", indicateur_de_sante=" + indicateur_de_sante + "]";
-	}
-
-	public boolean est_une_femelle() {
-		return femelle;
+		return "Animal [\n nom_espece = " + nom_espece + ", \n femelle = " + femelle + ", \n poids = " + poids
+				+ ", \n taille = " + taille + ", \n age = " + age + ", \n indicateur_de_faim = " + indicateur_de_faim
+				+ ", \n indicateur_de_sommeil = " + indicateur_de_sommeil + ", \n indicateur_de_sante = "
+				+ indicateur_de_sante + "\n]";
 	}
 
 	public int recuperer_sante() {
@@ -116,10 +133,13 @@ public abstract class Animal {
 		return nom;
 	}
 
-	public Animal() {
-		String result = this.getClass().toString();
-		result = result.substring(6).toString();
-		this.nom_espece = result;
+	private boolean est_pas_mort() {
+		if (recuperer_sante() == 1 || recuperer_sante() == 2)
+			return true;
+		return false;
 	}
 
+	public boolean est_une_femelle() {
+		return femelle;
+	}
 }

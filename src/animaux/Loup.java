@@ -11,6 +11,12 @@ import hierarchie.Meute;
 
 public class Loup extends Mammifere implements Terrestre {
 
+	public Loup(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
+			Enclos enclos_de_l_animal) {
+		super(nom, femelle, poids, taille, age, zoo_de_l_animal, enclos_de_l_animal);
+		// TODO Auto-generated constructor stub
+	}
+
 	int force;
 	int domination;
 	int rang; // 1 a 24 (1 est le plus élévé) (chiffre = lettre grec)

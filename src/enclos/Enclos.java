@@ -22,7 +22,32 @@ public abstract class Enclos {
 		}
 	}
 
-	public abstract void ajouter_animaux(Animal animal);
+	public void ajouter_animaux(Animal futur_prisonier) {
+
+		// recuperation informations animal
+		Class<?>[] mobilites = futur_prisonier.getClass().getInterfaces();
+		String espece = futur_prisonier.getClass().getName();
+		Class<?>[] mobilites_enclos = this.getClass().getInterfaces();
+
+		if (!animaux_present.isEmpty())
+			for (int i = 0; i < animaux_present.size(); i++) {
+				if (animaux_present.get(i).getClass().getName().equals(espece)) {
+					animaux_present.add(futur_prisonier);
+					return;
+				}
+			}
+		else {
+			for (int j = 0; j < mobilites.length; j++) {
+				for (int i = 0; i < mobilites_enclos.length; i++) {
+					if (mobilites[i].equals(mobilites_enclos[j])) {
+						animaux_present.add(futur_prisonier);
+						return;
+					}
+				}
+			}
+		}
+		System.out.println(futur_prisonier.recuperer_nom() + " ne peut pas aller dans l'aquarium");
+	}
 
 	public void enlever_animaux(Animal o) {
 		animaux_present.remove(o);

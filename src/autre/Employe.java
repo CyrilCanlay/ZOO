@@ -5,8 +5,14 @@ import enclos.Enclos;
 
 public class Employe {
 	String nom;
-	boolean sexe;
+	boolean femme;
 	int âge;
+
+	public Employe(String nom, boolean femme, int âge) {
+		this.nom = nom;
+		this.femme = femme;
+		this.âge = âge;
+	}
 
 	public void examiner_enclos(Enclos enclos_en_question) {
 		enclos_en_question.afficher_caracteristiques_animaux_contenu();
@@ -21,7 +27,7 @@ public class Employe {
 	}
 
 	public void transferer_animal(Enclos enclos_originel, Enclos enclos_ultime, Animal pov_bete) {
-		if (enclos_originel.getClass().equals(enclos_ultime.getClass())) {
+		if (enclos_originel.getClass().toString().equals(enclos_ultime.getClass())) {
 			enclos_originel.enlever_animaux(pov_bete);
 			enclos_ultime.ajouter_animaux(pov_bete);
 		} else {

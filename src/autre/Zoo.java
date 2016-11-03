@@ -33,7 +33,6 @@ public class Zoo {
 						EnclosStandard standard = (EnclosStandard) enclos_existants.get(i);
 						informations.add(standard.recuperer_meute_de_l_enclos());
 					}
-
 				}
 			}
 		}
@@ -46,7 +45,7 @@ public class Zoo {
 		for (int i = 0; i < enclos_existants.size(); i++) {
 			result = result + enclos_existants.get(i).recuperer_nombre_animaux_present();
 		}
-		System.out.println(result);
+		System.out.println("Le nombre d'animaux du zoo " + this.nom + " est de : " + result);
 	}
 
 	public void ajouter_enclos(Enclos e) {
