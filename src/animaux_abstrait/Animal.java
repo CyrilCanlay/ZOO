@@ -62,6 +62,10 @@ public abstract class Animal {
 		return enclos_de_l_animal;
 	}
 
+	public void changer_enclos_de_l_animal(Enclos futur_enclos) {
+		this.enclos_de_l_animal = futur_enclos;
+	}
+
 	public void changer_faim(boolean indicateur_de_faim) {
 		if (est_pas_mort())
 			this.indicateur_de_faim = indicateur_de_faim;
@@ -102,11 +106,13 @@ public abstract class Animal {
 
 	}
 
+	@Override
 	public String toString() {
-		return "Animal [\n nom_espece = " + nom_espece + ", \n femelle = " + femelle + ", \n poids = " + poids
-				+ ", \n taille = " + taille + ", \n age = " + age + ", \n indicateur_de_faim = " + indicateur_de_faim
-				+ ", \n indicateur_de_sommeil = " + indicateur_de_sommeil + ", \n indicateur_de_sante = "
-				+ indicateur_de_sante + "\n]";
+		return "Animal [\nnom=" + nom + ", \nnom_espece=" + nom_espece + ", \nfemelle=" + femelle + ", \npoids=" + poids
+				+ ", \ntaille=" + taille + ", \nage=" + age + ", \nindicateur_de_faim=" + indicateur_de_faim
+				+ ", \nindicateur_de_sommeil=" + indicateur_de_sommeil + ", \nindicateur_de_sante="
+				+ indicateur_de_sante + ", \nzoo_de_l_animal=" + zoo_de_l_animal + ", \nenclos_de_l_animal="
+				+ enclos_de_l_animal + "]";
 	}
 
 	public int recuperer_sante() {

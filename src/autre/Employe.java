@@ -27,12 +27,17 @@ public class Employe {
 	}
 
 	public void transferer_animal(Enclos enclos_originel, Enclos enclos_ultime, Animal pov_bete) {
-		if (enclos_originel.getClass().toString().equals(enclos_ultime.getClass())) {
+		if (enclos_ultime.ajouter_animaux_securise(pov_bete) == true) {
+			enclos_ultime.ajouter_animaux_securise(pov_bete);
 			enclos_originel.enlever_animaux(pov_bete);
-			enclos_ultime.ajouter_animaux(pov_bete);
 		} else {
 			System.out.println("ça se fait pas gros !");
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Employe [\nnom=" + nom + ", \nfemme=" + femme + ", \nâge=" + âge + "]";
 	}
 
 }

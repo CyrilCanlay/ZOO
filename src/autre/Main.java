@@ -11,32 +11,31 @@ import enclos.Voliere;
 public class Main {
 	public static void main(String[] args) {
 
-		Zoo zoo = new Zoo();
-		zoo.setMaximal_enclos(10);
-
 		Employe papa_franku = new Employe("George Miller", false, 25);
 
-		Aigle maxime = new Aigle("maxime", false, 20, 1000, 2, null, null);
-		Baleine bob = new Baleine("bob", false, 3000, 30000, 5, null, null);
-		PoissonRouge cyril = new PoissonRouge("cyril", false, 3, 200, 4, null, null);
-		Pingouin xXx_pingu_xXx = new Pingouin("xXx_pingu_xXx", true, 50, 5000, 6, null, null);
+		Zoo zoo = new Zoo("zoo", papa_franku, 10);
+		zoo.setMaximal_enclos(10);
+
+		Aigle maxime = new Aigle("maxime", false, 20, 1000, 2, zoo, null);
+		Baleine bob = new Baleine("bob", false, 3000, 30000, 5, zoo, null);
+		PoissonRouge cyril = new PoissonRouge("cyril", false, 3, 200, 4, zoo, null);
+		Baleine bobette = new Baleine("bobette", true, 3000, 30000, 6, zoo, null);
+		Pingouin xXx_pingu_xXx = new Pingouin("xXx_pingu_xXx", true, 50, 5000, 6, zoo, null);
 
 		Aquarium ocean = new Aquarium("ocean", 500, 100);
+		Aquarium lac = new Aquarium("lac", 50, 10);
 		Voliere ciel = new Voliere("ciel", 500, 100);
 		EnclosStandard terre = new EnclosStandard("terre", 500, 100);
 
-		ocean.ajouter_animaux(bob);
-		ocean.ajouter_animaux(cyril);
+		ocean.ajouter_animaux_securise(bob);
+		ocean.ajouter_animaux_securise(cyril);
+		ocean.ajouter_animaux_securise(bobette);
 
-		ciel.ajouter_animaux(maxime);
-
-		papa_franku.transferer_animal(ocean, ciel, xXx_pingu_xXx);
-		papa_franku.transferer_animal(ocean, ciel, bob);
+		ciel.ajouter_animaux_securise(maxime);
 
 		zoo.ajouter_enclos(ocean);
 
-		zoo.afficher_nombre_animaux();
-		ocean.afficher_caracteristiques_animaux_contenu();
+		zoo.controller_enploye();
 
 	}
 }

@@ -19,6 +19,10 @@ public abstract class Enclos {
 		this.degree_proprete = 2;
 	}
 
+	public String recuperer_nom() {
+		return nom;
+	}
+
 	public ArrayList<Animal> recuperer_animaux_present() {
 		return animaux_present;
 	}
@@ -29,50 +33,75 @@ public abstract class Enclos {
 		}
 	}
 
-	public void ajouter_animaux(Animal futur_prisonier) {
+	public boolean ajouter_animaux_securise(Animal futur_prisonier) {
 
 		// recuperation informations animal
 		Class<?>[] mobilites = futur_prisonier.getClass().getInterfaces();
-		String espece = futur_prisonier.getClass().getName();
-		Class<?>[] mobilites_enclos = this.getClass().getInterfaces();
+		String espece = futur_prisonier.getClass().getName().toString();
 
-		if (animaux_present.size() != 0)
-			for (int i = 0; i < animaux_present.size(); i++) {
-				System.out.println(animaux_present.get(i).getClass().getName() + " --- " + espece);
-				if (animaux_present.get(i).getClass().getName().equals(espece)) {
-					animaux_present.add(futur_prisonier);
-					nombre_animaux_present++;
-					return;
-				}
+		// recuperation informations enclos
+		String type_enclos = this.getClass().getName();
+
+		String terre = EnclosStandard.class.getName();
+		String eau = Aquarium.class.getName();
+		String air = Voliere.class.getName();
+
+		// verfications
+
+		if (animaux_present.size() != 0) {
+			if (animaux_present.get(0).getClass().getName().toString().equals(espece)) {
+				ajouter_animaux(futur_prisonier);
+				return true;
 			}
-		else {
+			System.out.println("ERREUR : " + futur_prisonier.recuperer_nom()
+					+ " n'est pas la meme espece que les animaux dans " + nom);
+			return false;
+
+		} else {
 			for (int j = 0; j < mobilites.length; j++) {
-				for (int i = 0; i < mobilites_enclos.length; i++) {
-					System.out.println("TEST");
-					System.out.println(mobilites[i] + "--- " + (mobilites_enclos[j]));
-					if (mobilites[i].equals(mobilites_enclos[j])) {
-						animaux_present.add(futur_prisonier);
-						nombre_animaux_present++;
-						return;
-					}
+				if (mobilites[j].toString().equals("interface animaux_interfaces.Terrestre")
+						&& type_enclos.equals(terre)) {
+					ajouter_animaux(futur_prisonier);
+					return true;
+				}
+				if (mobilites[j].toString().equals("interface animaux_interfaces.Marin") && type_enclos.equals(eau)) {
+					ajouter_animaux(futur_prisonier);
+					return true;
+
+				}
+				if (mobilites[j].toString().equals("interface animaux_interfaces.Volant") && type_enclos.equals(air)) {
+					ajouter_animaux(futur_prisonier);
+					return true;
+
 				}
 			}
+			System.out.println(
+					"ERREUR : " + futur_prisonier.recuperer_nom() + " ne peut pas physiquement survivre dans " + nom);
+			return false;
 		}
-		System.out.println("DEBUG : " + mobilites);
-		System.out.println("DEBUG : " + espece);
-		System.out.println("DEBUG : " + mobilites_enclos);
 
-		System.out.println(futur_prisonier.recuperer_nom() + " ne peut pas aller dans " + nom);
+	}
+
+	public void ajouter_animaux(Animal o) {
+		animaux_present.add(o);
+		nombre_animaux_present++;
+		o.changer_enclos_de_l_animal(this);
+		System.out.println("L'animal " + o.recuperer_nom() + " a bien été rajouter dans l'enclos " + this.nom);
 	}
 
 	public void enlever_animaux(Animal o) {
 		animaux_present.remove(o);
 		nombre_animaux_present--;
+		System.out.println("L'animal " + o.recuperer_nom() + "a bien été enlever dans l'enclos " + this.nom);
+
 	}
 
 	public void enlever_animaux(int i) {
+		String nom_temp = animaux_present.get(i).recuperer_nom();
 		animaux_present.remove(i);
 		nombre_animaux_present--;
+		System.out.println("L'animal " + nom_temp + "a bien été enlever dans l'enclos " + this.nom);
+
 	}
 
 	public void nourrir_animaux() {
@@ -92,6 +121,11 @@ public abstract class Enclos {
 	public void salir() {
 		if (degree_proprete > 0)
 			degree_proprete = degree_proprete - 1;
+	}
+
+	@Override
+	public String toString() {
+		return "TODO"; // TODO
 	}
 
 }

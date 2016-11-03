@@ -19,16 +19,20 @@ public class Zoo {
 
 	@Override
 	public String toString() {
-		return "Zoo [nom=" + nom + ", employe=" + employe + ", maximal_enclos=" + maximal_enclos + ", enclos_existants="
-				+ enclos_existants + "]";
+		return "Zoo [\n nom=" + nom + ", \n employe=" + employe + ", \n maximal_enclos=" + maximal_enclos
+				+ ", \n enclos_existants=" + recuperer_enclos_existants().size() + "]";
 	}
 
 	public void afficher_zoo_complet() {
-		this.toString();
+		System.out.println();
+		System.out.println("----- Affichage Zoo -----");
+		System.out.println();
+		System.out.println(this.toString());
+
 		for (Enclos enclos : enclos_existants) {
-			enclos.toString();
+			System.out.println(enclos.toString());
 			for (Animal animaux : enclos.recuperer_animaux_present()) {
-				animaux.toString();
+				System.out.println(animaux.toString());
 			}
 		}
 	}
@@ -62,7 +66,7 @@ public class Zoo {
 		for (int i = 0; i < enclos_existants.size(); i++) {
 			result = result + enclos_existants.get(i).recuperer_nombre_animaux_present();
 		}
-		System.out.println("Le nombre d'animaux du zoo " + this.nom + " est de : " + result);
+		System.out.println("Le nombre d'animaux du zoo " + this.nom + " est de : " + (result + 1));
 	}
 
 	public void ajouter_enclos(Enclos e) {
@@ -117,22 +121,31 @@ public class Zoo {
 
 		Scanner lire_clavier = new Scanner(System.in);
 
-		System.out.println("0 = quitter" + "\n" + "1 = afficher zoo");
-		int choix = lire_clavier.nextInt();
+		while (true) {
+			System.out.println("0 = quitter" + "\n" + "1 = afficher zoo");
+			int choix = lire_clavier.nextInt();
 
-		switch (choix) {
+			switch (choix) {
 
-		case 0:
-			Thread.currentThread().interrupt();
-			return;
+			case 0:
+				Thread.currentThread().interrupt();
+				return;
 
-		case 1:
-			afficher_zoo_complet();
-			break;
+			case 1:
+				afficher_zoo_complet();
+				break;
 
-		default:
-			System.out.println("Mauvais choix réessayer.");
+			default:
+				System.out.println("Mauvais choix réessayer.");
 
+			}
 		}
 	}
+
+	public Zoo(String nom, Employe employe, int maximal_enclos) {
+		this.nom = nom;
+		this.employe = employe;
+		this.maximal_enclos = maximal_enclos;
+	}
+
 }
