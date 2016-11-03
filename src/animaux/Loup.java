@@ -48,7 +48,7 @@ public class Loup extends Mammifere implements Terrestre {
 	public void hurlement_appartenance() {
 		System.out.println(this.recuperer_nom() + " fais son cri de meute : " + meute_du_loup.recuperer_cri_de_meute());
 
-		// Réponse de la meute
+		// Reponse de la meute
 		ArrayList<Loup> loups_de_la_meute_du_loup = meute_du_loup.recuperer_loups_meute();
 		for (int i = 0; i < loups_de_la_meute_du_loup.size(); i++) {
 			if (!loups_de_la_meute_du_loup.get(i).equals(this)) {
@@ -56,7 +56,7 @@ public class Loup extends Mammifere implements Terrestre {
 			}
 		}
 
-		// Réponse des autres meutes
+		// Reponse des autres meutes
 
 		// On recupere les enclos du zoo et on enleve l'enclos de this de la
 		// selection
