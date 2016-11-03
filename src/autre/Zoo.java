@@ -11,9 +11,12 @@ public class Zoo {
 	Employe employe;
 	int maximal_enclos;
 	ArrayList<Enclos> enclos_existants = new ArrayList<>();
-	
 
-	public ArrayList recherche_animal_dans_zoo(Animal animal_recherche) {
+	public ArrayList<Enclos> recuperer_enclos_existants() {
+		return enclos_existants;
+	}
+
+	public ArrayList recuperer_appartenaces_animal(Animal animal_recherche) {
 		ArrayList informations = new ArrayList();
 		// 0 = Zoo
 		// 1 = Enclos

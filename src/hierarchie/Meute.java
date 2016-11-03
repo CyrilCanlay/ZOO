@@ -74,4 +74,13 @@ public class Meute {
 		loups.remove(i);
 	}
 
+	public String recuperer_cri_de_meute() {
+		return cri_de_la_meute;
+	}
+
+	public ArrayList<Loup> recuperer_loups_meute() {
+		return loups;
+
+	}
+
 }
