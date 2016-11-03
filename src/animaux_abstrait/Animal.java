@@ -4,6 +4,9 @@ import autre.Zoo;
 import enclos.Enclos;
 
 public abstract class Animal {
+
+	private String nom;
+
 	private String nom_espece;
 	private boolean femelle; // M = 0 F = 1
 	private int poids;
@@ -41,6 +44,12 @@ public abstract class Animal {
 
 	public void changer_sante(int indicateur_de_sante) {
 		this.indicateur_de_sante = indicateur_de_sante;
+	}
+
+	public void changer_nom(String futur_nom) {
+		if (this.nom.equals(null)) {
+			this.nom = futur_nom;
+		}
 	}
 
 	public void changer_age(int age) {
@@ -89,6 +98,10 @@ public abstract class Animal {
 
 	public int recuperer_age() {
 		return age;
+	}
+
+	public String recuperer_nom() {
+		return nom;
 	}
 
 	public Animal() {

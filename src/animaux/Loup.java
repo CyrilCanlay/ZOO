@@ -3,9 +3,7 @@ package animaux;
 import animaux_abstrait.Mammifere;
 import animaux_interfaces.Terrestre;
 import autre.Calcul;
-import autre.Zoo;
-import enclos.Enclos;
-import enclos.EnclosStandard;
+import hierarchie.Meute;
 
 public class Loup extends Mammifere implements Terrestre {
 
@@ -15,8 +13,11 @@ public class Loup extends Mammifere implements Terrestre {
 	int niveau;
 	int impetuosite;
 
+	Meute meute_du_loup;
+
 	@Override
 	public void mettre_bas() {
+		// TODO
 	}
 
 	@Override
@@ -37,11 +38,11 @@ public class Loup extends Mammifere implements Terrestre {
 
 	public void hurlement_appartenance() {
 
+		System.out.println(this + "fais son cri de meute");
 	}
 
 	public void hurlement_meute() {
-		String hurlement_de_meute = System.out.println(this + " fais le hurlement de la meute ");
-
+		System.out.println(this + " fais le hurlement de la meute ");
 	}
 
 	public void hurlement_domination(Loup destinataire) {
@@ -64,7 +65,7 @@ public class Loup extends Mammifere implements Terrestre {
 	}
 
 	public void se_separer_de_sa_meute() {
-
+		// TODO
 	}
 
 	public void vieillir() {
