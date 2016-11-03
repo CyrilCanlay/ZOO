@@ -1,8 +1,12 @@
 package animaux;
 
+import java.util.ArrayList;
+
 import animaux_abstrait.Mammifere;
 import animaux_interfaces.Terrestre;
 import autre.Calcul;
+import autre.Zoo;
+import enclos.Enclos;
 import hierarchie.Meute;
 
 public class Loup extends Mammifere implements Terrestre {
@@ -14,6 +18,11 @@ public class Loup extends Mammifere implements Terrestre {
 	int impetuosite;
 
 	Meute meute_du_loup;
+
+	private void actualiser_meute_animal(Zoo zoo_du_loup) {
+		ArrayList inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
+		meute_du_loup = (Meute) inforamtions_loup.get(2);
+	}
 
 	@Override
 	public void mettre_bas() {
@@ -37,12 +46,43 @@ public class Loup extends Mammifere implements Terrestre {
 	}
 
 	public void hurlement_appartenance() {
+		System.out.println(this.recuperer_nom() + " fais son cri de meute : " + meute_du_loup.recuperer_cri_de_meute());
 
-		System.out.println(this + "fais son cri de meute");
+		// Réponse de la meute
+		ArrayList<Loup> loups_de_la_meute_du_loup = meute_du_loup.recuperer_loups_meute();
+		for (int i = 0; i < loups_de_la_meute_du_loup.size(); i++) {
+			if (!loups_de_la_meute_du_loup.get(i).equals(this)) {
+				loups_de_la_meute_du_loup.get(i).hurlement_meute();
+			}
+		}
+
+		// Réponse des autres meutes
+
+		// On recupere les enclos du zoo et on enleve l'enclos de this de la
+		// selection
+		ArrayList<Enclos> enclos_meute_adverses = this.recuperer_zoo_de_l_animal().recuperer_enclos_existants();
+		for (int i = 0; i < enclos_meute_adverses.size(); i++) {
+			if (enclos_meute_adverses.get(i).equals(this.recuperer_enclos_de_l_animal())) {
+				enclos_meute_adverses.remove(i);
+			}
+		}
+
+		// on fais hurler le cri de meute des autres loups
+		for (int i = 0; i < enclos_meute_adverses.size(); i++) {
+			for (int j = 0; j < enclos_meute_adverses.get(i).recuperer_nombre_animaux_present(); j++) {
+				if (enclos_meute_adverses.get(i).selectionner_animaux_present().get(j).getClass()
+						.equals("class animaux.Loup")) {
+					Loup loup_adverse_qui_va_repondre = (Loup) enclos_meute_adverses.get(i)
+							.selectionner_animaux_present().get(j);
+					loup_adverse_qui_va_repondre.hurlement_meute();
+				}
+			}
+		}
+
 	}
 
 	public void hurlement_meute() {
-		System.out.println(this + " fais le hurlement de la meute ");
+		System.out.println(this + " fais le hurlement de la meute " + meute_du_loup.recuperer_cri_de_meute());
 	}
 
 	public void hurlement_domination(Loup destinataire) {

@@ -1,5 +1,7 @@
 package animaux_abstrait;
 
+import java.util.ArrayList;
+
 import autre.Zoo;
 import enclos.Enclos;
 
@@ -19,8 +21,10 @@ public abstract class Animal {
 	private Zoo zoo_de_l_animal;
 	private Enclos enclos_de_l_animal;
 
-	private void actualiser_zoo_enclos_animal() {
-
+	private void actualiser_zoo_enclos_animal(Zoo zoo_du_loup) {
+		ArrayList inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
+		zoo_de_l_animal = (Zoo) inforamtions_loup.get(0);
+		enclos_de_l_animal = (Enclos) inforamtions_loup.get(1);
 	}
 
 	public void manger() {
@@ -32,6 +36,14 @@ public abstract class Animal {
 
 	public boolean recuperer_faim() {
 		return indicateur_de_faim;
+	}
+
+	public Zoo recuperer_zoo_de_l_animal() {
+		return zoo_de_l_animal;
+	}
+
+	public Enclos recuperer_enclos_de_l_animal() {
+		return enclos_de_l_animal;
 	}
 
 	public void changer_faim(boolean indicateur_de_faim) {
