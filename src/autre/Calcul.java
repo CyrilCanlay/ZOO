@@ -1,10 +1,14 @@
 package autre;
 
+import java.util.Scanner;
+
 public class Calcul {
 
-	final static String alphabet_grec[] = { "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta",
-			"theta", "iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma", "tau",
-			"upsilon", "phi", "khi", "psi", "omega" };
+	public final static Scanner lire_clavier = new Scanner(System.in);
+
+	final static String alphabet_grec[] = { "alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta",
+			"iota", "kappa", "lambda", "mu", "nu", "xi", "omicron", "pi", "rho", "sigma", "tau", "upsilon", "phi",
+			"khi", "psi", "omega" };
 
 	public static int nombre_aleatoire_borne(int minimum, int maximum) {
 		int randomNum = minimum + (int) (Math.random() * maximum);

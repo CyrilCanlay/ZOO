@@ -1,7 +1,5 @@
 package enclos;
 
-import animaux_abstrait.Animal;
-
 public class Aquarium extends Enclos {
 
 	public Aquarium(String nom, int superficie, int nombre_maximum_animaux) {

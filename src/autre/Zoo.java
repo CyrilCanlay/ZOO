@@ -1,17 +1,19 @@
 package autre;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import animaux_abstrait.Animal;
 import enclos.Enclos;
 import enclos.EnclosStandard;
+import hierarchie.Colonie_loups;
 
 public class Zoo {
 	String nom;
 	Employe employe;
 	int maximal_enclos;
 	ArrayList<Enclos> enclos_existants = new ArrayList<>();
+
+	Colonie_loups colonie_de_loups_du_zoo;
 
 	public ArrayList<Enclos> recuperer_enclos_existants() {
 		return enclos_existants;
@@ -37,8 +39,8 @@ public class Zoo {
 		}
 	}
 
-	public ArrayList recuperer_appartenaces_animal(Animal animal_recherche) {
-		ArrayList informations = new ArrayList();
+	public ArrayList<Object> recuperer_appartenaces_animal(Animal animal_recherche) {
+		ArrayList<Object> informations = new ArrayList<Object>();
 		// 0 = Zoo
 		// 1 = Enclos
 		// 2 = Meute
@@ -119,11 +121,9 @@ public class Zoo {
 
 	public void controller_enploye() {
 
-		Scanner lire_clavier = new Scanner(System.in);
-
 		while (true) {
 			System.out.println("0 = quitter" + "\n" + "1 = afficher zoo");
-			int choix = lire_clavier.nextInt();
+			int choix = Calcul.lire_clavier.nextInt();
 
 			switch (choix) {
 

@@ -9,6 +9,13 @@ public class Meute {
 	ArrayList<Loup> loups = new ArrayList<Loup>();
 	String cri_de_la_meute;
 
+	public Meute(Couple_alpha couple_meute, ArrayList<Loup> loups, String cri_de_la_meute) {
+		super();
+		this.couple_meute = couple_meute;
+		this.loups = loups;
+		this.cri_de_la_meute = cri_de_la_meute;
+	}
+
 	public void afficher_caracteristiques() {
 		couple_meute.afficher_caracteristiques();
 		afficher_caracteristiques_loup_meute();
@@ -78,9 +85,12 @@ public class Meute {
 		return cri_de_la_meute;
 	}
 
+	public int recuperer_nombre_loups() {
+		return loups.size();
+	}
+
 	public ArrayList<Loup> recuperer_loups_meute() {
 		return loups;
-
 	}
 
 }

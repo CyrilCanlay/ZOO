@@ -1,6 +1,5 @@
 package enclos;
 
-import animaux_abstrait.Animal;
 import hierarchie.Meute;
 
 public class EnclosStandard extends Enclos {
@@ -20,6 +19,10 @@ public class EnclosStandard extends Enclos {
 		if (this.degree_proprete < 2 && animaux_present.size() == 0) {
 			degree_proprete = 2;
 		}
+	}
+
+	public void changer_meute_de_l_enclos(Meute meute_de_l_enclos) {
+		this.meute_de_l_enclos = meute_de_l_enclos;
 	}
 
 }

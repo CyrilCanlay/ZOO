@@ -34,6 +34,10 @@ public abstract class Enclos {
 	}
 
 	public boolean ajouter_animaux_securise(Animal futur_prisonier) {
+		if (nombre_animaux_present >= nombre_maximum_animaux) {
+			System.out.println(
+					"ERREUR : il y a deja " + nombre_animaux_present + " pour un maximum de " + nombre_maximum_animaux);
+		}
 
 		// recuperation informations animal
 		Class<?>[] mobilites = futur_prisonier.getClass().getInterfaces();

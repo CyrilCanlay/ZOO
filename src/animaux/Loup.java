@@ -11,28 +11,66 @@ import hierarchie.Meute;
 
 public class Loup extends Mammifere implements Terrestre {
 
+	final static int TAILLE_MINIMUM_NAISSANCE_LOUP = 250; // milimettres
+	final static int TAILLE_MAXIMUM_NAISSANCE_LOUP = 450; // milimettres
+
+	final static int POIDS_MINIMUM_NAISSANCE_LOUP = 400; // grammes
+	final static int POIDS_MAXIMUM_NAISSANCE_LOUP = 600; // grammes
+
 	public Loup(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
 			Enclos enclos_de_l_animal) {
 		super(nom, femelle, poids, taille, age, zoo_de_l_animal, enclos_de_l_animal);
-		// TODO Auto-generated constructor stub
 	}
 
 	int force;
 	int domination;
-	int rang; // 1 a 24 (1 est le plus élévé) (chiffre = lettre grec)
+	int rang;
+	// 1 = alpha
+	// 2 = beta
+	// 3 = gamma
+	// 4 = omega
+	// 0 = solitaire
 	int niveau;
 	int impetuosite;
 
 	Meute meute_du_loup;
 
-	private void actualiser_meute_animal(Zoo zoo_du_loup) {
+	public void actualiser_meute_animal(Zoo zoo_du_loup) {
 		ArrayList<?> inforamtions_loup = zoo_du_loup.recuperer_appartenaces_animal(this);
 		meute_du_loup = (Meute) inforamtions_loup.get(2);
 	}
 
 	@Override
 	public void mettre_bas() {
-		// TODO
+		System.out.println("Entrée le nom de l'enfant");
+		String nom_naissance = Calcul.lire_clavier.next();
+
+		boolean femelle_naissance;
+		int random_femelle_naissance = Calcul.nombre_aleatoire_borne(0, 1);
+		if (random_femelle_naissance == 1) {
+			femelle_naissance = true;
+		} else {
+			femelle_naissance = false;
+		}
+
+		int poids_naissance = Calcul.nombre_aleatoire_borne(POIDS_MINIMUM_NAISSANCE_LOUP, POIDS_MAXIMUM_NAISSANCE_LOUP);
+
+		int taille_naissance = Calcul.nombre_aleatoire_borne(TAILLE_MINIMUM_NAISSANCE_LOUP,
+				TAILLE_MAXIMUM_NAISSANCE_LOUP);
+
+		int rang_enfant = 2;
+		for (Loup loups_meute : meute_du_loup.recuperer_loups_meute()) {
+			if (loups_meute.recuperer_rang() == 2) {
+				rang_enfant = 3;
+				break;
+			}
+		}
+
+		Loup nouveau_loup = new Loup(nom_naissance, femelle_naissance, poids_naissance, taille_naissance, 0,
+				this.recuperer_zoo_de_l_animal(), this.recuperer_enclos_de_l_animal());
+		nouveau_loup.rang = rang_enfant;
+
+		this.recuperer_enclos_de_l_animal().ajouter_animaux_securise(nouveau_loup);
 	}
 
 	@Override
@@ -124,7 +162,7 @@ public class Loup extends Mammifere implements Terrestre {
 	public void dominer(Loup adversaire) {
 		if (adversaire.rang != 1 && !adversaire.est_une_femelle())
 			if (impetuosite >= adversaire.impetuosite) {
-				if (force > adversaire.force || adversaire.rang == 24) {
+				if (force > adversaire.force || adversaire.rang == 4) {
 					System.out.println("Victoire");
 
 					// Echange les rangs
@@ -148,5 +186,26 @@ public class Loup extends Mammifere implements Terrestre {
 
 	public int recuperer_force() {
 		return force;
+	}
+
+	public int recuperer_rang() {
+		return rang;
+	}
+
+	public void changer_rang(int rang) {
+		if (0 <= rang && rang <= 4) {
+			this.rang = rang;
+		} else {
+			System.out.println("ERREUR : rang de domination inconnu");
+		}
+	}
+
+	public void changer_meute(Meute futur_meute) {
+		this.meute_du_loup = futur_meute;
+	}
+
+	public void devenir_solitaire() {
+		rang = 0;
+		meute_du_loup = null;
 	}
 }
