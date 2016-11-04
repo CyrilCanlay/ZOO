@@ -6,12 +6,12 @@ import enclos.Enclos;
 public class Employe {
 	String nom;
 	boolean femme;
-	int âge;
+	int age;
 
-	public Employe(String nom, boolean femme, int âge) {
+	public Employe(String nom, boolean femme, int age) {
 		this.nom = nom;
 		this.femme = femme;
-		this.âge = âge;
+		this.age = age;
 	}
 
 	public void examiner_enclos(Enclos enclos_en_question) {
@@ -31,13 +31,13 @@ public class Employe {
 			enclos_ultime.ajouter_animaux_securise(pov_bete);
 			enclos_originel.enlever_animaux(pov_bete);
 		} else {
-			System.out.println("ça se fait pas gros !");
+			System.out.println("ca se fait pas gros !");
 		}
 	}
 
 	@Override
 	public String toString() {
-		return "Employe [\nnom=" + nom + ", \nfemme=" + femme + ", \nâge=" + âge + "]";
+		return "Employe [\nnom=" + nom + ", \nfemme=" + femme + ", \nage=" + age + "]";
 	}
 
 }
