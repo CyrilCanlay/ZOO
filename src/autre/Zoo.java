@@ -8,12 +8,12 @@ import enclos.EnclosStandard;
 import hierarchie.Colonie_loups;
 
 public class Zoo {
-	String nom;
-	Employe employe;
-	int maximal_enclos;
-	ArrayList<Enclos> enclos_existants = new ArrayList<>();
+	private String nom;
+	private Employe employe;
+	private int maximal_enclos;
+	private ArrayList<Enclos> enclos_existants = new ArrayList<>();
 
-	Colonie_loups colonie_de_loups_du_zoo;
+	private Colonie_loups colonie_de_loups_du_zoo;
 
 	public ArrayList<Enclos> recuperer_enclos_existants() {
 		return enclos_existants;

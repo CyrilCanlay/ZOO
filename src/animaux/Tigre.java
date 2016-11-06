@@ -10,12 +10,12 @@ public class Tigre extends Mammifere implements Terrestre {
 	public Tigre(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
 			Enclos enclos_de_l_animal) {
 		super(nom, femelle, poids, taille, age, zoo_de_l_animal, enclos_de_l_animal);
-		// TODO Auto-generated constructor stub
+		// TODO
 	}
 
 	@Override
 	public void mettre_bas() {
-		// TODO Auto-generated method stub
+		// TODO
 
 	}
 

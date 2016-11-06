@@ -12,7 +12,7 @@ public class Pingouin extends Autre implements Marin, Terrestre, Volant {
 	public Pingouin(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
 			Enclos enclos_de_l_animal) {
 		super(nom, femelle, poids, taille, age, zoo_de_l_animal, enclos_de_l_animal);
-		// TODO Auto-generated constructor stub
+		// TODO
 	}
 
 	@Override

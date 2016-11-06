@@ -154,15 +154,30 @@ public class Loup extends Mammifere implements Terrestre {
 		return false;
 	}
 
-	public void se_separer_de_sa_meute() {
-		// TODO
-	}
-
 	public void vieillir() {
 		if (recuperer_age() > 18) {
 			changer_sante(0);
 		}
 		changer_age(recuperer_age() + 1);
+	}
+
+	public int recuperer_rang_en_dessous() {
+		if (this.rang == 4)
+			return 4;
+
+		boolean presence_loups_rangs[] = { false, false, false, false, false };
+		for (Loup iterable_element : meute_du_loup.recuperer_loups_meute()) {
+			presence_loups_rangs[this.recuperer_rang()] = true;
+		}
+
+		for (int i = 1; i < presence_loups_rangs.length; i++) {
+			if (presence_loups_rangs[this.rang + i] == true) {
+				return this.rang + i;
+			}
+		}
+		System.out.println("Rang en dessous non recuperer");
+		return this.rang;
+
 	}
 
 	public void dominer(Loup adversaire) {
@@ -180,7 +195,7 @@ public class Loup extends Mammifere implements Terrestre {
 					domination = domination + 1;
 					adversaire.domination = adversaire.domination - 1;
 					if (adversaire.domination < -5) {
-						// TODO
+
 					}
 				} else {
 					System.out.println("Defaite");
