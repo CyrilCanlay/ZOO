@@ -6,11 +6,12 @@ import autre.Zoo;
 import enclos.Enclos;
 
 public class Requin extends Autre implements Marin {
+	final static int AGE_MAXIMUM = 30;
 
 	public Requin(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
 			Enclos enclos_de_l_animal) {
 		super(nom, femelle, poids, taille, age, zoo_de_l_animal, enclos_de_l_animal);
-		// TODO Auto-generated constructor stub
+		selectionner_age_maximum(AGE_MAXIMUM);
 	}
 
 	@Override

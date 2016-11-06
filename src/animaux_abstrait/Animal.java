@@ -21,10 +21,12 @@ public abstract class Animal {
 	private Zoo zoo_de_l_animal;
 	private Enclos enclos_de_l_animal;
 
+	private int age_maximum = 0;
+
 	public Animal(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
 			Enclos enclos_de_l_animal) {
 		this.nom = nom;
-		this.nom_espece = this.getClass().toString();
+		this.nom_espece = this.getClass().getName().toString();
 		this.femelle = femelle;
 		this.poids = poids;
 		this.taille = taille;
@@ -34,6 +36,13 @@ public abstract class Animal {
 		this.indicateur_de_sante = 2;
 		this.zoo_de_l_animal = zoo_de_l_animal;
 		this.enclos_de_l_animal = enclos_de_l_animal;
+		this.age_maximum = 0;
+	}
+
+	public void selectionner_age_maximum(int age_maximum) {
+		if (age_maximum == 0) {
+			this.age_maximum = age_maximum;
+		}
 	}
 
 	public void actualiser_zoo_enclos_animal(Zoo zoo_du_loup) {
@@ -43,11 +52,12 @@ public abstract class Animal {
 	}
 
 	public void manger() {
-		if (this.indicateur_de_sommeil == false) {
-			System.out.println(this.nom + " est en train de manger");
-			changer_faim(false);
-			System.out.println("j'ai fini de manger");
-		}
+		if (est_pas_mort())
+			if (this.indicateur_de_sommeil == false) {
+				System.out.println(this.nom + " est en train de manger");
+				changer_faim(false);
+				System.out.println("j'ai fini de manger");
+			}
 	}
 
 	public boolean recuperer_faim() {
@@ -63,7 +73,8 @@ public abstract class Animal {
 	}
 
 	public void changer_enclos_de_l_animal(Enclos futur_enclos) {
-		this.enclos_de_l_animal = futur_enclos;
+		if (est_pas_mort())
+			this.enclos_de_l_animal = futur_enclos;
 	}
 
 	public void changer_faim(boolean indicateur_de_faim) {
@@ -72,12 +83,12 @@ public abstract class Animal {
 	}
 
 	public void changer_sommeil(boolean indicateur_de_sommeil) {
-		if (recuperer_sante() != 0)
+		if (est_pas_mort())
 			this.indicateur_de_sommeil = indicateur_de_sommeil;
 	}
 
 	public void changer_sante(int indicateur_de_sante) {
-		if (recuperer_sante() == 0) {
+		if (est_pas_mort()) {
 			this.indicateur_de_sante = indicateur_de_sante;
 		}
 	}
@@ -95,24 +106,38 @@ public abstract class Animal {
 	public abstract void emettre_un_son();
 
 	public void etre_soigne() {
-
+		if (est_pas_mort())
+			indicateur_de_sante = 2;
 	}
 
 	public void s_endormir() {
-
+		if (est_pas_mort())
+			indicateur_de_sommeil = true;
 	}
 
 	public void se_reveiller() {
-
+		if (est_pas_mort())
+			indicateur_de_sommeil = false;
 	}
 
 	@Override
 	public String toString() {
-		return "Animal [\nnom=" + nom + ", \nnom_espece=" + nom_espece + ", \nfemelle=" + femelle + ", \npoids=" + poids
-				+ ", \ntaille=" + taille + ", \nage=" + age + ", \nindicateur_de_faim=" + indicateur_de_faim
-				+ ", \nindicateur_de_sommeil=" + indicateur_de_sommeil + ", \nindicateur_de_sante="
-				+ indicateur_de_sante + ", \nzoo_de_l_animal=" + zoo_de_l_animal + ", \nenclos_de_l_animal="
-				+ enclos_de_l_animal + "]";
+		return "Animal [nom=" + nom + ", nom_espece=" + nom_espece + ", femelle=" + femelle + ", poids=" + poids
+				+ ", taille=" + taille + ", age=" + age + ", faim=" + indicateur_de_faim + ", sommeil="
+				+ indicateur_de_sommeil + ", sante=" + indicateur_de_sante + "]";
+	}
+
+	public void mourrir() {
+		changer_sante(0);
+		changer_faim(false);
+		changer_sommeil(false);
+	}
+
+	public void vieillir() {
+		if (recuperer_age() > age_maximum) {
+			mourrir();
+		}
+		changer_age(recuperer_age() + 1);
 	}
 
 	public int recuperer_sante() {

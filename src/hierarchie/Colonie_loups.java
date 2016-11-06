@@ -3,7 +3,7 @@ package hierarchie;
 import java.util.ArrayList;
 
 import animaux.Loup;
-import autre.Calcul;
+import autre.Autre;
 import enclos.EnclosStandard;
 
 public class Colonie_loups {
@@ -39,7 +39,7 @@ public class Colonie_loups {
 
 	private void creee_nouvelle_meute(Loup futur_alpha_1, Loup futur_alpha_2,
 			EnclosStandard potenciel_enclos_futur_meute) {
-		Couple_alpha nouveau_couple = null;
+		Couple_alpha nouveau_couple = new Couple_alpha(null, null);
 		if (futur_alpha_1.est_une_femelle()) {
 			nouveau_couple.changer_loup_femelle(futur_alpha_1);
 			nouveau_couple.changer_loup_male(futur_alpha_2);
@@ -69,7 +69,7 @@ public class Colonie_loups {
 	public void generer_hurlements_aleatoires() {
 		for (Meute meute : meutes_de_la_colonie) {
 			for (Loup loup : meute.recuperer_loups_meute()) {
-				int chance = Calcul.nombre_aleatoire_borne(POURCENTAGE_CHANCE_HURLEMENT, 100);
+				int chance = Autre.nombre_aleatoire_borne(POURCENTAGE_CHANCE_HURLEMENT, 100);
 				if (chance < POURCENTAGE_CHANCE_HURLEMENT) {
 					loup.hurlement_appartenance();
 				}

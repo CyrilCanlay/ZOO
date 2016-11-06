@@ -16,8 +16,8 @@ public class EnclosStandard extends Enclos {
 
 	@Override
 	public void entretenir() {
-		if (this.degree_proprete < 2 && animaux_present.size() == 0) {
-			degree_proprete = 2;
+		if (recuperer_degree_proprete() < 2 && recuperer_animaux_present().size() == 0) {
+			changer_degree_proprete(2);
 		}
 	}
 

@@ -10,10 +10,9 @@ public class Meute {
 	String cri_de_la_meute;
 
 	public Meute(Couple_alpha couple_meute, ArrayList<Loup> loups, String cri_de_la_meute) {
-		super();
-		this.couple_meute = couple_meute;
 		this.loups = loups;
 		this.cri_de_la_meute = cri_de_la_meute;
+		constituer_couple_alpha();
 	}
 
 	public void afficher_caracteristiques() {
@@ -29,6 +28,7 @@ public class Meute {
 
 	public void creer_nouvelle_hierarchie_meute() {
 		constituer_couple_alpha();
+		
 	}
 
 	public void constituer_couple_alpha() {

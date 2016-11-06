@@ -4,9 +4,11 @@ import animaux_abstrait.Animal;
 import enclos.Enclos;
 
 public class Employe {
-	String nom;
-	boolean femme;
-	int age;
+
+	private final static int AGE_MAXIMUM = 90;
+	private String nom;
+	private boolean femme;
+	private int age;
 
 	public Employe(String nom, boolean femme, int age) {
 		this.nom = nom;
@@ -19,7 +21,15 @@ public class Employe {
 	}
 
 	public void nettoyer_enclos(Enclos enclos_en_question) {
-		enclos_en_question.entretenir();
+		if (enclos_en_question.recuperer_nombre_animaux_vivant() == 0) {
+			enclos_en_question.entretenir();
+			System.out.println("Nettoyage acompli !");
+			enclos_en_question.enlever_corps();
+			System.out.println("Corps enleves !");
+		} else {
+			System.out.println("Nettoyage impossible, il reste encore "
+					+ enclos_en_question.recuperer_nombre_animaux_vivant() + " animaux present dans la cage.");
+		}
 	}
 
 	public void nourrir_animaux_enclos(Enclos enclos_en_question) {
@@ -27,7 +37,7 @@ public class Employe {
 	}
 
 	public void transferer_animal(Enclos enclos_originel, Enclos enclos_ultime, Animal pov_bete) {
-		if (enclos_ultime.ajouter_animaux_securise(pov_bete) == true) {
+		if (enclos_ultime.verification_transfert_animaux(pov_bete) == true) {
 			enclos_ultime.ajouter_animaux_securise(pov_bete);
 			enclos_originel.enlever_animaux(pov_bete);
 		} else {
@@ -37,7 +47,14 @@ public class Employe {
 
 	@Override
 	public String toString() {
-		return "Employe [\nnom=" + nom + ", \nfemme=" + femme + ", \nage=" + age + "]";
+		return "Employe [nom=" + nom + ", femme=" + femme + ", age=" + age + "]";
+	}
+
+	public void viellir() {
+		age++;
+		if (age > AGE_MAXIMUM) {
+			// TODO
+		}
 	}
 
 }

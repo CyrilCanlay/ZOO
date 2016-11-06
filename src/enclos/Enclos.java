@@ -9,8 +9,16 @@ public abstract class Enclos {
 	private int superficie;
 	private int nombre_maximum_animaux;
 	private int nombre_animaux_present;
-	protected ArrayList<Animal> animaux_present = new ArrayList<Animal>();
-	protected int degree_proprete; // 0 mauvais / 1 correct / 2 bon
+	private ArrayList<Animal> animaux_present = new ArrayList<Animal>();
+	private int degree_proprete; // 0 mauvais / 1 correct / 2 bon
+
+	public int recuperer_degree_proprete() {
+		return degree_proprete;
+	}
+
+	public void changer_degree_proprete(int degree_proprete) {
+		this.degree_proprete = degree_proprete;
+	}
 
 	public Enclos(String nom, int superficie, int nombre_maximum_animaux) {
 		this.nom = nom;
@@ -33,7 +41,15 @@ public abstract class Enclos {
 		}
 	}
 
-	public boolean ajouter_animaux_securise(Animal futur_prisonier) {
+	public void ajouter_animaux_securise(Animal futur_prisonier) {
+		if (verification_transfert_animaux(futur_prisonier))
+			ajouter_animaux(futur_prisonier);
+		else {
+			System.out.println(futur_prisonier.recuperer_nom() + " n as pas pu etre rajouter :(");
+		}
+	}
+
+	public boolean verification_transfert_animaux(Animal futur_prisonier) {
 		if (nombre_animaux_present >= nombre_maximum_animaux) {
 			System.out.println(
 					"ERREUR : il y a deja " + nombre_animaux_present + " pour un maximum de " + nombre_maximum_animaux);
@@ -54,27 +70,23 @@ public abstract class Enclos {
 
 		if (animaux_present.size() != 0) {
 			if (animaux_present.get(0).getClass().getName().toString().equals(espece)) {
-				ajouter_animaux(futur_prisonier);
 				return true;
 			}
 			System.out.println("ERREUR : " + futur_prisonier.recuperer_nom()
-					+ " n'est pas la meme espece que les animaux dans " + nom);
+					+ " n'est pas de la meme espece que les animaux dans " + nom);
 			return false;
 
 		} else {
 			for (int j = 0; j < mobilites.length; j++) {
 				if (mobilites[j].toString().equals("interface animaux_interfaces.Terrestre")
 						&& type_enclos.equals(terre)) {
-					ajouter_animaux(futur_prisonier);
 					return true;
 				}
 				if (mobilites[j].toString().equals("interface animaux_interfaces.Marin") && type_enclos.equals(eau)) {
-					ajouter_animaux(futur_prisonier);
 					return true;
 
 				}
 				if (mobilites[j].toString().equals("interface animaux_interfaces.Volant") && type_enclos.equals(air)) {
-					ajouter_animaux(futur_prisonier);
 					return true;
 
 				}
@@ -120,7 +132,23 @@ public abstract class Enclos {
 		return animaux_present.size();
 	}
 
+	public int recuperer_nombre_animaux_vivant() {
+		int compteur = 0;
+		for (Animal animal : animaux_present) {
+			if (animal.recuperer_sante() != 0)
+				compteur++;
+		}
+		return compteur;
+	}
+
 	public abstract void entretenir();
+
+	public void enlever_corps() {
+		for (Animal animal : animaux_present) {
+			if (animal.recuperer_sante() == 0)
+				enlever_animaux(animal);
+		}
+	}
 
 	public void salir() {
 		if (degree_proprete > 0)
@@ -129,7 +157,16 @@ public abstract class Enclos {
 
 	@Override
 	public String toString() {
-		return "TODO"; // TODO
+		String message_proprete = null;
+		if (degree_proprete == 2)
+			message_proprete = "propre";
+		if (degree_proprete == 1)
+			message_proprete = "moyen";
+		if (degree_proprete == 0)
+			message_proprete = "sale";
+		return "Enclos [nom=" + nom + ", superficie=" + superficie + ", nombre_maximum_animaux="
+				+ nombre_maximum_animaux + ", nombre_animaux_present=" + nombre_animaux_present + ", degree_proprete="
+				+ message_proprete + "]";
 	}
 
 }

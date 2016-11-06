@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import animaux_abstrait.Mammifere;
 import animaux_interfaces.Terrestre;
-import autre.Calcul;
+import autre.Autre;
 import autre.Zoo;
 import enclos.Enclos;
 import hierarchie.Meute;
 
 public class Loup extends Mammifere implements Terrestre {
+	final static int AGE_MAXIMUM = 18;
 
 	final static int TAILLE_MINIMUM_NAISSANCE_LOUP = 250; // milimettres
 	final static int TAILLE_MAXIMUM_NAISSANCE_LOUP = 450; // milimettres
@@ -27,6 +28,8 @@ public class Loup extends Mammifere implements Terrestre {
 		this.niveau = niveau;
 		this.impetuosite = impetuosite;
 		this.meute_du_loup = meute_du_loup;
+		selectionner_age_maximum(AGE_MAXIMUM);
+
 	}
 
 	int force;
@@ -49,20 +52,20 @@ public class Loup extends Mammifere implements Terrestre {
 
 	@Override
 	public void mettre_bas() {
-		System.out.println("Entrée le nom de l'enfant");
-		String nom_naissance = Calcul.lire_clavier.next();
+		System.out.println("Entrez le nom de l'enfant");
+		String nom_naissance = Autre.lire_clavier.next();
 
 		boolean femelle_naissance;
-		int random_femelle_naissance = Calcul.nombre_aleatoire_borne(0, 1);
+		int random_femelle_naissance = Autre.nombre_aleatoire_borne(0, 1);
 		if (random_femelle_naissance == 1) {
 			femelle_naissance = true;
 		} else {
 			femelle_naissance = false;
 		}
 
-		int poids_naissance = Calcul.nombre_aleatoire_borne(POIDS_MINIMUM_NAISSANCE_LOUP, POIDS_MAXIMUM_NAISSANCE_LOUP);
+		int poids_naissance = Autre.nombre_aleatoire_borne(POIDS_MINIMUM_NAISSANCE_LOUP, POIDS_MAXIMUM_NAISSANCE_LOUP);
 
-		int taille_naissance = Calcul.nombre_aleatoire_borne(TAILLE_MINIMUM_NAISSANCE_LOUP,
+		int taille_naissance = Autre.nombre_aleatoire_borne(TAILLE_MINIMUM_NAISSANCE_LOUP,
 				TAILLE_MAXIMUM_NAISSANCE_LOUP);
 
 		int rang_enfant = 2;
@@ -81,12 +84,11 @@ public class Loup extends Mammifere implements Terrestre {
 
 	@Override
 	public String toString() {
-		String a = "Animal [nom_espece=" + "Loup" + ", femelle=" + est_une_femelle() + ", poids=" + recuperer_poids()
-				+ ", taille=" + recuperer_taille() + ", age=" + recuperer_age() + ", indicateur_de_faim="
-				+ recuperer_faim() + ", indicateur_de_sommeil=" + recuperer_sommeil() + ", indicateur_de_sante="
-				+ recuperer_sante() + "]";
-		String b = "Loup [force=" + force + ", domination=" + domination + ", rang="
-				+ Calcul.recuperer_alphabet_grec(rang) + ", niveau=" + niveau + ", impetuosite=" + impetuosite + "]";
+		String a = "Animal [nom=" + recuperer_nom() + ", femelle=" + est_une_femelle() + ", poids=" + recuperer_poids()
+				+ ", taille=" + recuperer_taille() + ", age=" + recuperer_age() + ", faim=" + recuperer_faim()
+				+ ", sommeil=" + recuperer_sommeil() + ", sante=" + recuperer_sante() + "]";
+		String b = " Details [force=" + force + ", domination=" + domination + ", rang=" + rang + ", niveau=" + niveau
+				+ ", impetuosite=" + impetuosite + ", meute_du_loup=" + meute_du_loup + "]";
 		return a + b;
 	}
 
@@ -154,20 +156,13 @@ public class Loup extends Mammifere implements Terrestre {
 		return false;
 	}
 
-	public void vieillir() {
-		if (recuperer_age() > 18) {
-			changer_sante(0);
-		}
-		changer_age(recuperer_age() + 1);
-	}
-
 	public int recuperer_rang_en_dessous() {
 		if (this.rang == 4)
 			return 4;
 
 		boolean presence_loups_rangs[] = { false, false, false, false, false };
-		for (Loup iterable_element : meute_du_loup.recuperer_loups_meute()) {
-			presence_loups_rangs[this.recuperer_rang()] = true;
+		for (Loup loup : meute_du_loup.recuperer_loups_meute()) {
+			presence_loups_rangs[loup.recuperer_rang()] = true;
 		}
 
 		for (int i = 1; i < presence_loups_rangs.length; i++) {

@@ -2,7 +2,7 @@ package autre;
 
 import java.util.Scanner;
 
-public class Calcul {
+public class Autre {
 
 	public final static Scanner lire_clavier = new Scanner(System.in);
 
@@ -18,4 +18,10 @@ public class Calcul {
 	public static String recuperer_alphabet_grec(int index) {
 		return alphabet_grec[index];
 	}
+
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
 }
