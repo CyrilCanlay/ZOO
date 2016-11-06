@@ -98,6 +98,7 @@ public class Loup extends Mammifere implements Terrestre {
 	}
 
 	public void hurlement_appartenance() {
+
 		System.out.println(this.recuperer_nom() + " fais son cri de meute : " + meute_du_loup.recuperer_cri_de_meute());
 
 		// Reponse de la meute
@@ -134,19 +135,20 @@ public class Loup extends Mammifere implements Terrestre {
 	}
 
 	public void hurlement_meute() {
-		System.out.println(this + " fais le hurlement de la meute " + meute_du_loup.recuperer_cri_de_meute());
+		System.out.println(
+				this.recuperer_nom() + " fais le hurlement de la meute " + meute_du_loup.recuperer_cri_de_meute());
 	}
 
 	public void hurlement_domination(Loup destinataire) {
-		System.out.println(this + " fais un hurlement dominant envers " + destinataire);
+		System.out.println(this.recuperer_nom() + " fais un hurlement dominant envers " + destinataire);
 	}
 
 	public void hurlement_soumission(Loup destinataire) {
-		System.out.println(this + " fais un hurlement soumis envers " + destinataire);
+		System.out.println(this.recuperer_nom() + " fais un hurlement soumis envers " + destinataire);
 	}
 
 	public void hurlement_agressivite(Loup destinataire) {
-		System.out.println(this + " fais un hurlement aggressif envers " + destinataire);
+		System.out.println(this.recuperer_nom() + " fais un hurlement aggressif envers " + destinataire);
 	}
 
 	public boolean entendre_hurlement() {

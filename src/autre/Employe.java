@@ -23,7 +23,7 @@ public class Employe {
 	public void nettoyer_enclos(Enclos enclos_en_question) {
 		if (enclos_en_question.recuperer_nombre_animaux_vivant() == 0) {
 			enclos_en_question.entretenir();
-			System.out.println("Nettoyage acompli !");
+			System.out.println("Nettoyage accompli !");
 			enclos_en_question.enlever_corps();
 			System.out.println("Corps enleves !");
 		} else {

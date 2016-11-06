@@ -39,6 +39,9 @@ public abstract class Enclos {
 		for (int i = 0; i < animaux_present.size(); i++) {
 			System.out.println(animaux_present.get(i).toString());
 		}
+		if (animaux_present.size() == 0) {
+			System.out.println(this.nom + " est vide");
+		}
 	}
 
 	public void ajouter_animaux_securise(Animal futur_prisonier) {
@@ -72,8 +75,8 @@ public abstract class Enclos {
 			if (animaux_present.get(0).getClass().getName().toString().equals(espece)) {
 				return true;
 			}
-			System.out.println("ERREUR : " + futur_prisonier.recuperer_nom()
-					+ " n'est pas de la meme espece que les animaux dans " + nom);
+			System.out.println(
+					futur_prisonier.recuperer_nom() + " n'est pas de la meme espece que les animaux dans " + nom);
 			return false;
 
 		} else {
@@ -91,18 +94,16 @@ public abstract class Enclos {
 
 				}
 			}
-			System.out.println(
-					"ERREUR : " + futur_prisonier.recuperer_nom() + " ne peut pas physiquement survivre dans " + nom);
+			System.out.println(futur_prisonier.recuperer_nom() + " ne peut pas physiquement survivre dans " + nom);
 			return false;
 		}
-
 	}
 
 	public void ajouter_animaux(Animal o) {
 		animaux_present.add(o);
 		nombre_animaux_present++;
 		o.changer_enclos_de_l_animal(this);
-		System.out.println("L'animal " + o.recuperer_nom() + " a bien été rajouter dans l'enclos " + this.nom);
+		System.out.println("L'animal " + o.recuperer_nom() + " a bien ete rajouter dans l'enclos " + this.nom);
 	}
 
 	public void enlever_animaux(Animal o) {
@@ -117,7 +118,14 @@ public abstract class Enclos {
 		animaux_present.remove(i);
 		nombre_animaux_present--;
 		System.out.println("L'animal " + nom_temp + "a bien été enlever dans l'enclos " + this.nom);
+	}
 
+	public boolean verification_nourrir() {
+		for (Animal animal : animaux_present) {
+			if (animal.recuperer_faim() == true)
+				return true;
+		}
+		return false;
 	}
 
 	public void nourrir_animaux() {
@@ -167,6 +175,12 @@ public abstract class Enclos {
 		return "Enclos [nom=" + nom + ", superficie=" + superficie + ", nombre_maximum_animaux="
 				+ nombre_maximum_animaux + ", nombre_animaux_present=" + nombre_animaux_present + ", degree_proprete="
 				+ message_proprete + "]";
+	}
+
+	public boolean verification_nettoyage() {
+		if (degree_proprete < 2)
+			return true;
+		return false;
 	}
 
 }

@@ -1,5 +1,7 @@
 package autre;
 
+import java.util.ArrayList;
+
 import animaux.Aigle;
 import animaux.Baleine;
 import animaux.Loup;
@@ -8,14 +10,21 @@ import animaux.PoissonRouge;
 import enclos.Aquarium;
 import enclos.EnclosStandard;
 import enclos.Voliere;
+import hierarchie.Colonie_loups;
+import hierarchie.Couple_alpha;
+import hierarchie.Meute;
 
 public class Main {
 	public static void main(String[] args) {
 
+		System.out.println("\n");
+		System.out.println("Chargement en cours ...");
+		System.out.println("\n");
+
 		// Exemple
 
 		// Employe
-		Employe papa_franku = new Employe("George Miller", false, 25);
+		Employe papa_franku = new Employe("George Miller", false, 24);
 
 		// Zoo
 		Zoo zoo = new Zoo("zoo", papa_franku, 10);
@@ -76,10 +85,33 @@ public class Main {
 		zoo.ajouter_enclos(lac);
 		zoo.ajouter_enclos(loup_land);
 
+		// ajout des meutes de loups
+
+		ArrayList<Loup> loups = new ArrayList<Loup>();
+		loups.add(a);
+		loups.add(b);
+		loups.add(c);
+		loups.add(d);
+		loups.add(e);
+		loups.add(f);
+		loups.add(g);
+		loups.add(h);
+		loups.add(i);
+		loups.add(o);
+		String cri_de_la_meute = "HOUHOUHOHUOHUOHU";
+		Couple_alpha couple_meute = new Couple_alpha(a, b);
+		Meute m = new Meute(couple_meute, loups, cri_de_la_meute);
+		Colonie_loups colonie_loups = new Colonie_loups();
+
+		colonie_loups.ajouter_meute(m);
+		zoo.changer_colonie_de_loups_du_zoo(colonie_loups);
+
+		System.out.println("\n");
+		System.out.println("Chargement terminee !");
+		System.out.println("\n");
+
 		// Debut Simulation
 
-		for (int j = 0; j < 50; ++j)
-			System.out.println();
 		zoo.controller_employe();
 
 	}

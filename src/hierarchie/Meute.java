@@ -9,10 +9,17 @@ public class Meute {
 	ArrayList<Loup> loups = new ArrayList<Loup>();
 	String cri_de_la_meute;
 
+	public void actualiser_appartenance_meute() {
+		for (Loup loup : loups) {
+			loup.changer_meute(this);
+		}
+	}
+
 	public Meute(Couple_alpha couple_meute, ArrayList<Loup> loups, String cri_de_la_meute) {
 		this.loups = loups;
 		this.cri_de_la_meute = cri_de_la_meute;
 		constituer_couple_alpha();
+		actualiser_appartenance_meute();
 	}
 
 	public void afficher_caracteristiques() {
@@ -28,7 +35,7 @@ public class Meute {
 
 	public void creer_nouvelle_hierarchie_meute() {
 		constituer_couple_alpha();
-		
+
 	}
 
 	public void constituer_couple_alpha() {
@@ -37,14 +44,14 @@ public class Meute {
 
 		for (int i = 0; i < loups.size(); i++) {
 			if (loups.get(i).est_une_femelle()) {
-				if (potenciel_loup_alpha_femelle.equals(null)) {
+				if (null == potenciel_loup_alpha_femelle) {
 					potenciel_loup_alpha_femelle = loups.get(i);
 				}
 				if (potenciel_loup_alpha_femelle.recuperer_force() < loups.get(i).recuperer_force()) {
 					potenciel_loup_alpha_femelle = loups.get(i);
 				}
 			} else {
-				if (potenciel_loup_alpha_male.equals(null)) {
+				if (null == potenciel_loup_alpha_male) {
 					potenciel_loup_alpha_male = loups.get(i);
 				}
 				if (potenciel_loup_alpha_male.recuperer_force() < loups.get(i).recuperer_force()) {
@@ -53,8 +60,10 @@ public class Meute {
 			}
 		}
 
-		couple_meute.changer_loup_femelle(potenciel_loup_alpha_femelle);
-		couple_meute.changer_loup_femelle(potenciel_loup_alpha_male);
+		if (couple_meute != null) {
+			couple_meute.changer_loup_femelle(potenciel_loup_alpha_femelle);
+			couple_meute.changer_loup_femelle(potenciel_loup_alpha_male);
+		}
 	}
 
 	public void reproduction_loups() {

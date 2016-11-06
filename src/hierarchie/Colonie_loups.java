@@ -10,7 +10,12 @@ public class Colonie_loups {
 
 	final static int POURCENTAGE_CHANCE_HURLEMENT = 25;
 
-	ArrayList<Meute> meutes_de_la_colonie;
+	ArrayList<Meute> meutes_de_la_colonie = new ArrayList<Meute>();
+
+	public void ajouter_meute(Meute meute) {
+		meutes_de_la_colonie.add(meute);
+
+	}
 
 	public void afficher_tout_les_loups_de_la_colonie() {
 		for (Meute meute : meutes_de_la_colonie) {
@@ -69,8 +74,10 @@ public class Colonie_loups {
 	public void generer_hurlements_aleatoires() {
 		for (Meute meute : meutes_de_la_colonie) {
 			for (Loup loup : meute.recuperer_loups_meute()) {
-				int chance = Autre.nombre_aleatoire_borne(POURCENTAGE_CHANCE_HURLEMENT, 100);
+				int chance = Autre.nombre_aleatoire_borne(0, 100);
+
 				if (chance < POURCENTAGE_CHANCE_HURLEMENT) {
+
 					loup.hurlement_appartenance();
 				}
 			}
