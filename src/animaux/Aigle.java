@@ -16,7 +16,7 @@ public class Aigle extends Autre implements Terrestre, Volant {
 	@Override
 	public void pondre() {
 		if (est_une_femelle()) {
-			System.out.println("c'est pâques voila un oeuf");
+			System.out.println("c'est paques voila un oeuf");
 		}
 	}
 

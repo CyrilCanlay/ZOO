@@ -18,8 +18,15 @@ public class Loup extends Mammifere implements Terrestre {
 	final static int POIDS_MAXIMUM_NAISSANCE_LOUP = 600; // grammes
 
 	public Loup(String nom, boolean femelle, int poids, int taille, int age, Zoo zoo_de_l_animal,
-			Enclos enclos_de_l_animal) {
+			Enclos enclos_de_l_animal, int force, int domination, int rang, int niveau, int impetuosite,
+			Meute meute_du_loup) {
 		super(nom, femelle, poids, taille, age, zoo_de_l_animal, enclos_de_l_animal);
+		this.force = force;
+		this.domination = domination;
+		this.rang = rang;
+		this.niveau = niveau;
+		this.impetuosite = impetuosite;
+		this.meute_du_loup = meute_du_loup;
 	}
 
 	int force;
@@ -66,11 +73,10 @@ public class Loup extends Mammifere implements Terrestre {
 			}
 		}
 
-		Loup nouveau_loup = new Loup(nom_naissance, femelle_naissance, poids_naissance, taille_naissance, 0,
-				this.recuperer_zoo_de_l_animal(), this.recuperer_enclos_de_l_animal());
-		nouveau_loup.rang = rang_enfant;
-
-		this.recuperer_enclos_de_l_animal().ajouter_animaux_securise(nouveau_loup);
+		this.recuperer_enclos_de_l_animal()
+				.ajouter_animaux_securise(new Loup(nom_naissance, femelle_naissance, poids_naissance, taille_naissance,
+						0, this.recuperer_zoo_de_l_animal(), this.recuperer_enclos_de_l_animal(), 0, 0, rang_enfant, 0,
+						0, this.meute_du_loup));
 	}
 
 	@Override
